@@ -2,50 +2,79 @@ import { useState, useEffect } from 'react'
 import './App.css'
 import axios from './axios'
 
+import BookShelf from './components/bookShelf'
+
 
 function App() {
-  const [data, setData] = useState('')
+  const [data, setData] = useState({
+    numFound: 0,
+    docs: [],
+  })
 
   // Define a state variable called "inputValue"
   const [inputValue, setInputValue] = useState("");
 
+  const [searchValue, setSearchValue] = useState("");
+
   // Define a function to handle change events on the input
   const handleChange = (e) => {
-    setInputValue(e.target.value);
-    console.log(e.target.value)
-
+    let input = e.target.value
+    setInputValue(() => e.target.value)
+    setSearchValue(() => input.trim().split(' ').join('+'));
   };
 
+  async function handleSubmit(e) {
+
+    try {
+      e.preventDefault()
+      const books = await axios({
+        method: 'GET',
+        url: `${searchValue}`,
+      })
+      // console.log(books.data)
+      setData(() => books.data)
+
+    } catch (err) {
+
+    }
+  }
 
   // function handleSubmit(event) {
   //   console.log('search for ' + inputValue)
-  useEffect(() => {
-    axios.get("").then(res => {
-      console.log(res.data)
-      setData(() => res.data.numFound)
-    })
-  }, [])
-
-  //   event.prefaultDefault()
+  //   useEffect(() => {
+  //     axios.get("").then(res => {
+  //       console.log(res.data)
+  //       setData(() => res.data.numFound)
+  //     })
+  //   }, [])
   // }
+
 
   return (
     <div className="App">
-      <h1 className='text-3xl font-bold mb-5'>ReadingTime</h1>
-      <form>
+      <h1 className='text-3xl font-bold mb-2 underline'>ReadingTime</h1>
+      <h3>Schedule your reading.</h3>
+
+      <form
+        onSubmit={handleSubmit}>
         <label>
-          <input className='border-solid border-2 border-indigo-600 rounded-md pl-5' type="text" value={inputValue} onChange={handleChange} />
+          <input className='border-solid border-2 border-indigo-600 rounded-md pl-2 mt-3' type="text" value={inputValue} onChange={handleChange} />
         </label>
-        <input className='' type='submit' value='submit' />
+        <input
+          className='border-solid border-2 border-blue-600 rounded-md ml-5 px-2 ' type='submit' value='submit' />
       </form>
+
       <div className="card">
         <p>
           Booksearch placeholder
         </p>
         <p>
-          {data} results found.
+          {data.numFound} results found.
         </p>
       </div>
+
+      <BookShelf bookshelf={data.docs} />
+
     </div>
   )
 }
