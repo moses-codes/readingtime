@@ -3,6 +3,7 @@ import './App.css'
 import axios from './axios'
 
 import BookShelf from './components/bookShelf'
+import Navbar from './components/navbar'
 
 
 function App() {
@@ -35,7 +36,7 @@ function App() {
       setData(() => books.data)
 
     } catch (err) {
-
+      console.err(err)
     }
   }
 
@@ -52,8 +53,8 @@ function App() {
 
   return (
     <div className="App">
-      <h1 className='text-3xl font-bold mb-2 underline'>ReadingTime</h1>
-      <h3>Schedule your reading.</h3>
+      <Navbar />
+
 
       <form
         onSubmit={handleSubmit}>
