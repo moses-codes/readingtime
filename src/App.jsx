@@ -55,6 +55,10 @@ function App() {
     <div className="App">
       <Navbar />
 
+      <div className="w-full flex justify-center my-10">
+        <button class="btn btn-outline mx-3">Search</button>
+        <button class="btn btn-outline mx-3 ">Manual Entry</button>
+      </div>
 
       <form
         onSubmit={handleSubmit}>
@@ -66,9 +70,6 @@ function App() {
       </form>
 
       <div className="card">
-        <p>
-          Booksearch placeholder
-        </p>
         <p>
           {data.numFound} results found.
         </p>
