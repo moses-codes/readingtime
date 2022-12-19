@@ -17,7 +17,9 @@ export default function bookShelf(bookshelf) {
             return (
                 <div className="card card-side bg-base-100 shadow-lg mt-5 pt-0 bookCard">
 
-                    <figure className="w-1/4"><img src={`https://covers.openlibrary.org/b/ID/${bookInfo.cover}-L.jpg`} alt="Movie" /></figure>
+                    <figure className="w-1/4"><img src={
+                        bookInfo.cover ? `https://covers.openlibrary.org/b/ID/${bookInfo.cover}-L.jpg` : "book-placeholder.png"
+                    } alt="Movie" /></figure>
                     <div className="w-3/4 card-body">
                         <h2 className="card-title">{bookInfo.title}</h2>
                         <h4>{bookInfo.author}</h4>
