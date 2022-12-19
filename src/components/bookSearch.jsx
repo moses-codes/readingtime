@@ -1,6 +1,6 @@
 import { React, useState } from "react";
 
-export default function bookShelf(bookshelf) {
+export default function bookSearch(bookshelf) {
 
     const searchResults = bookshelf.bookshelf
         .slice(0, 10)
