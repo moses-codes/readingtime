@@ -1,6 +1,8 @@
 # ReadingTime
 An in-progress app for book lovers to schedule reading goals!
 
+![alt: a screenshot displaying catch-22 by joseph heller](https://i.ibb.co/c8BC76d/readingtimesc.png)
+
 **Link to project:** coming soon!
 
 ## How It's Made:
