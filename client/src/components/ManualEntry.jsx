@@ -11,7 +11,7 @@ export default function ManualEntry() {
 
     return (
         /* "handleSubmit" will validate your inputs before invoking "onSubmit" */
-        <form className="" onSubmit={handleSubmit(onSubmit)}>
+        <form className="mx-auto" onSubmit={handleSubmit(onSubmit)}>
             {/* register your input into the hook by invoking the "register" function */}
 
             <div className="block">
@@ -39,7 +39,7 @@ export default function ManualEntry() {
                 {/* errors will return when field validation fails  */}
                 {errors.exampleRequired && <span>This field is required</span>}
             </div>
-            <input className="block" type="submit" />
+            <input className="block border-blue-600 rounded-xl" type="submit" />
         </form>
     );
 
