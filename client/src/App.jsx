@@ -1,28 +1,30 @@
 import { useState, useEffect } from 'react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
 import './App.css'
 
 import Navbar from './components/navbar'
-import ManualEntry from './components/ManualEntry'
-
-import Search from "./components/Search"
+import AddBooks from './components/AddBooks'
 
 
 function App() {
 
 
   return (
-    <div className="App">
-      <Navbar />
+    <BrowserRouter>
+      <div className="App">
+        <Navbar />
 
-      <div className="w-full flex justify-center my-10">
-        <button class="btn btn-outline mx-3">Search</button>
-        <button class="btn btn-outline mx-3 ">Manual Entry</button>
+        <Routes>
+
+          <Route path='/search'
+            element={
+              <AddBooks />}
+          />
+        </Routes>
+
       </div>
-
-      <Search />
-      <ManualEntry />
-
-    </div>
+    </BrowserRouter>
   )
 }
 
