@@ -32,6 +32,13 @@ export default function ManualEntry() {
                 {/* errors will return when field validation fails  */}
                 {errors.exampleRequired && <span>This field is required</span>}
             </div>
+
+            <div className="block">
+                <h4>Link to cover</h4>
+                <input className="block border-solid border-2 border-blue-600 rounded pl-3"  {...register("cover", { required: true })} />
+                {/* errors will return when field validation fails  */}
+                {errors.exampleRequired && <span>This field is required</span>}
+            </div>
             <input className="block" type="submit" />
         </form>
     );
