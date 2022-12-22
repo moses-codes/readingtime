@@ -17,8 +17,6 @@ function App() {
       .select()
   }
 
-  console.log('kijiji')
-  console.log(data)
 
   return (
     <BrowserRouter>
