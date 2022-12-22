@@ -12,8 +12,8 @@ app.use(express.urlencoded({ extended: true }));
 
 app.get("/api/hello", (req, res) => {
     res.status(200).send("pardon my kijijis");
-   });
+});
 
-app.listen( PORT, () => {
+app.listen(PORT, () => {
     console.log(`server is running on ${PORT}`)
 })
