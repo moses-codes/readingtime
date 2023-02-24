@@ -1,11 +1,34 @@
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 
 export default function bookSearch(bookshelf) {
+
+    const [books, setBooks] = useState(JSON.parse(localStorage.getItem('books')) || [])
+    //set setBooks localStorage
+
+
+    function addBook(bookInfo) {
+        console.log(bookInfo)
+        setBooks(() => {
+            return [...books, bookInfo]
+        })
+        console.log(books)
+    }
+    //any time the page loads, the useEffect will run
+    //check to see if localStorage has an array w books in it; set the array to 'books' state; otherwise.... initialize etc.
+
+    //try conditional: if (localStorage) { update the array }else{ initialize []}
+    useEffect(() => {
+        if (localStorage.getItem('books') === null) {
+            setBooks(() => [])
+            localStorage.setItem('books', JSON.stringify(books))
+        } else {
+            localStorage.setItem('books', JSON.stringify(books))
+        }
+    }, [books])
 
     const searchResults = bookshelf.bookshelf
         .slice(0, 10)
         .map(book => {
-            console.log(book)
 
             let bookInfo = {
                 title: `${book.title.split(' ').length > 6 ? book.title.split(' ').slice(0, 6).join(' ') + '...' : book.title}`,
@@ -25,7 +48,7 @@ export default function bookSearch(bookshelf) {
                         <h4>{bookInfo.author}</h4>
                         <h4>{bookInfo.numPages} p.</h4>
                         <div className="card-actions justify-end mt-16">
-                            <button className="btn btn-primary">Add Book</button>
+                            <button className="btn btn-primary" onClick={() => addBook(bookInfo)}>Add Book</button>
                         </div>
                     </div>
                 </div>
